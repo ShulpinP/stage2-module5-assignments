@@ -3,6 +3,7 @@ package assignments;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.LinkedList;
+import java.util.List;
 import java.util.Scanner;
 
 import assignments.annotations.FullNameProcessorGeneratorAnnotation;
@@ -16,18 +17,18 @@ import lombok.Setter;
 public class LocalProcessor {
     private String processorName;
     private Long period = 10_000_000_000_000L;
-    protected String ProcessorVersion;
-    private Integer valueofCheap;
-    private Scanner informationscanner;
-    LinkedList<String> stringArrayList = new LinkedList<>();
+    private StringBuilder ProcessorVersion = new StringBuilder();
+    private Integer valueofCheap = 0;
+    private Scanner informationScanner;
+    List<String> stringArrayList;
 
     public LocalProcessor(String processorName, Long period, String processorVersion, Integer valueOfCheap,
-                          Scanner informationscanner, LinkedList<String> stringArrayList) {
+                          Scanner informationScanner, LinkedList<String> stringArrayList) {
         this.processorName = processorName;
         this.period = period;
-        ProcessorVersion = processorVersion;
+        this.ProcessorVersion.append(processorVersion != null ? processorVersion : "");
         this.valueofCheap = valueOfCheap;
-        this.informationscanner = informationscanner;
+        this.informationScanner = informationScanner;
         this.stringArrayList = stringArrayList;
     }
 
@@ -35,88 +36,30 @@ public class LocalProcessor {
     }
 
     @ListIteratorAnnotation
-    public void listiterator(LinkedList<String> stringList) {
-        stringArrayList = new LinkedList<>(stringList);
-        for (int i = 0; i < period; i++) {
-            System.out.println(stringArrayList.get(i).hashCode());
+    public void listIterator(LinkedList<String> stringList) {
+        for (String st: stringList) {
+            System.out.println(st.hashCode());
         }
     }
 
     @FullNameProcessorGeneratorAnnotation
-    public String fullnameProcessorgenerator(LinkedList<String> stringList) {
+    public String fullNameProcessorGenerator(LinkedList<String> stringList) {
         StringBuilder sb = new StringBuilder();
-        for (int i = 0; i < stringArrayList.size(); i++) {
-            sb.append(stringList.get(i));
+        for (String st:stringList) {
+            sb.append(st);
         }
         return sb.toString();
     }
 
     @ReadFullProcessorNameAnnotation
-    public void readfullprocessorname(File file) throws FileNotFoundException {
-            StringBuilder sb = new StringBuilder();
-            informationscanner = new Scanner(file);
-            while (informationscanner.hasNext()) {
-                sb.append(informationscanner.nextLine());
+    public void readFullProcessorName(File file) throws FileNotFoundException {
+            informationScanner = new Scanner(file);
+            try {
+                while (informationScanner.hasNext()) {
+                    ProcessorVersion.append(informationScanner.nextLine());
+                }
+            } finally {
+                informationScanner.close();
             }
-            ProcessorVersion = sb.toString();
 
     }
-
-    @Override
-    public int hashCode() {
-        return super.hashCode();
-    }
-
-    @Override
-    public boolean equals(Object obj) {
-        return super.equals(obj);
-    }
-
-    public String getProcessorName() {
-        return processorName;
-    }
-
-    public void setProcessorName(String processorName) {
-        this.processorName = processorName;
-    }
-
-    public Long getPeriod() {
-        return period;
-    }
-
-    public void setPeriod(Long period) {
-        this.period = period;
-    }
-
-    public String getProcessorVersion() {
-        return ProcessorVersion;
-    }
-
-    public void setProcessorVersion(String processorVersion) {
-        ProcessorVersion = processorVersion;
-    }
-
-    public Integer getValueofCheap() {
-        return valueofCheap;
-    }
-
-    public void setValueofCheap(Integer valueofCheap) {
-        this.valueofCheap = valueofCheap;
-    }
-
-    public Scanner getInformationscanner() {
-        return informationscanner;
-    }
-
-    public void setInformationscanner(Scanner informationscanner) {
-        this.informationscanner = informationscanner;
-    }
-
-    public LinkedList<String> getStringArrayList() {
-        return stringArrayList;
-    }
-
-    public void setStringArrayList(LinkedList<String> stringArrayList) {
-        this.stringArrayList = stringArrayList;
-    }
-}
