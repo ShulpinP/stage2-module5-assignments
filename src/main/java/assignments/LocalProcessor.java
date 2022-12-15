@@ -37,7 +37,7 @@ public class LocalProcessor {
 
     @ListIteratorAnnotation
     public void listIterator(LinkedList<String> stringList) {
-        for (String st: stringList) {
+        for (String st : stringList) {
             System.out.println(st.hashCode());
         }
     }
@@ -45,7 +45,7 @@ public class LocalProcessor {
     @FullNameProcessorGeneratorAnnotation
     public String fullNameProcessorGenerator(LinkedList<String> stringList) {
         StringBuilder sb = new StringBuilder();
-        for (String st:stringList) {
+        for (String st : stringList) {
             sb.append(st);
         }
         return sb.toString();
@@ -53,13 +53,14 @@ public class LocalProcessor {
 
     @ReadFullProcessorNameAnnotation
     public void readFullProcessorName(File file) throws FileNotFoundException {
-            informationScanner = new Scanner(file);
-            try {
-                while (informationScanner.hasNext()) {
-                    ProcessorVersion.append(informationScanner.nextLine());
-                }
-            } finally {
-                informationScanner.close();
+        informationScanner = new Scanner(file);
+        try {
+            while (informationScanner.hasNext()) {
+                ProcessorVersion.append(informationScanner.nextLine());
             }
+        } finally {
+            informationScanner.close();
+        }
 
     }
+}
