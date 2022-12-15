@@ -71,4 +71,52 @@ public class LocalProcessor {
     public boolean equals(Object obj) {
         return super.equals(obj);
     }
+
+    public String getProcessorName() {
+        return processorName;
+    }
+
+    public void setProcessorName(String processorName) {
+        this.processorName = processorName;
+    }
+
+    public Long getPeriod() {
+        return period;
+    }
+
+    public void setPeriod(Long period) {
+        this.period = period;
+    }
+
+    public String getProcessorVersion() {
+        return ProcessorVersion;
+    }
+
+    public void setProcessorVersion(String processorVersion) {
+        ProcessorVersion = processorVersion;
+    }
+
+    public Integer getValueofCheap() {
+        return valueofCheap;
+    }
+
+    public void setValueofCheap(Integer valueofCheap) {
+        this.valueofCheap = valueofCheap;
+    }
+
+    public Scanner getInformationscanner() {
+        return informationscanner;
+    }
+
+    public void setInformationscanner(Scanner informationscanner) {
+        this.informationscanner = informationscanner;
+    }
+
+    public LinkedList<String> getStringArrayList() {
+        return stringArrayList;
+    }
+
+    public void setStringArrayList(LinkedList<String> stringArrayList) {
+        this.stringArrayList = stringArrayList;
+    }
 }
