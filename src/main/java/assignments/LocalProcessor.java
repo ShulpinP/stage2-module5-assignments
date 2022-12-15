@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Optional;
 import java.util.Scanner;
 
 import assignments.annotations.FullNameProcessorGeneratorAnnotation;
@@ -17,7 +18,7 @@ import lombok.Setter;
 public class LocalProcessor {
     private String processorName;
     private Long period = 10_000_000_000_000L;
-    private StringBuilder ProcessorVersion = new StringBuilder();
+    private StringBuilder processorVersion = new StringBuilder();
     private Integer valueofCheap = 0;
     private Scanner informationScanner;
     List<String> stringArrayList;
@@ -26,7 +27,7 @@ public class LocalProcessor {
                           Scanner informationScanner, LinkedList<String> stringArrayList) {
         this.processorName = processorName;
         this.period = period;
-        this.ProcessorVersion.append(processorVersion != null ? processorVersion : "");
+        this.processorVersion.append(processorVersion != null ? processorVersion : "");
         this.valueofCheap = valueOfCheap;
         this.informationScanner = informationScanner;
         this.stringArrayList = stringArrayList;
@@ -38,7 +39,7 @@ public class LocalProcessor {
     @ListIteratorAnnotation
     public void listIterator(LinkedList<String> stringList) {
         for (String st : stringList) {
-            System.out.println(st.hashCode());
+            Optional.ofNullable(st).map(String::hashCode).ifPresent(System.out::println);
         }
     }
 
@@ -56,7 +57,7 @@ public class LocalProcessor {
         informationScanner = new Scanner(file);
         try {
             while (informationScanner.hasNext()) {
-                ProcessorVersion.append(informationScanner.nextLine());
+                processorVersion.append(informationScanner.nextLine());
             }
         } finally {
             informationScanner.close();
