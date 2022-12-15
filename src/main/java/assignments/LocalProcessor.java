@@ -15,11 +15,11 @@ import lombok.Setter;
 @Setter
 public class LocalProcessor {
     private String processorName;
-    private Long period = 10000000000000L;
+    private Long period = 10_000_000_000_000L;
     protected String ProcessorVersion;
     private Integer valueofCheap;
-    Scanner informationscanner;
-    static LinkedList<String> stringArrayList = new LinkedList<>();
+    private Scanner informationscanner;
+    LinkedList<String> stringArrayList = new LinkedList<>();
 
     public LocalProcessor(String processorName, Long period, String processorVersion, Integer valueOfCheap,
                           Scanner informationscanner, LinkedList<String> stringArrayList) {
@@ -44,18 +44,31 @@ public class LocalProcessor {
 
     @FullNameProcessorGeneratorAnnotation
     public String fullnameProcessorgenerator(LinkedList<String> stringList) {
+        StringBuilder sb = new StringBuilder();
         for (int i = 0; i < stringArrayList.size(); i++) {
-            processorName+=stringList.get(i)+' ';
+            sb.append(stringList.get(i));
         }
-        return processorName;
+        return sb.toString();
     }
 
     @ReadFullProcessorNameAnnotation
     public void readfullprocessorname(File file) throws FileNotFoundException {
+            StringBuilder sb = new StringBuilder();
             informationscanner = new Scanner(file);
             while (informationscanner.hasNext()) {
-                ProcessorVersion+= informationscanner.nextLine();
+                sb.append(informationscanner.nextLine());
             }
+            ProcessorVersion = sb.toString();
 
+    }
+
+    @Override
+    public int hashCode() {
+        return super.hashCode();
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        return super.equals(obj);
     }
 }
