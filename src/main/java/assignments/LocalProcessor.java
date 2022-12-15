@@ -2,10 +2,7 @@ package assignments;
 
 import java.io.File;
 import java.io.FileNotFoundException;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Optional;
-import java.util.Scanner;
+import java.util.*;
 
 import assignments.annotations.FullNameProcessorGeneratorAnnotation;
 import assignments.annotations.ListIteratorAnnotation;
@@ -16,19 +13,19 @@ import lombok.Setter;
 @Getter
 @Setter
 public class LocalProcessor {
-    private String processorName;
+    private String processorName = "";
     private Long period = 10_000_000_000_000L;
     private StringBuilder processorVersion = new StringBuilder();
-    private Integer valueofCheap = 0;
+    private Integer valueOfCheap = 0;
     private Scanner informationScanner;
-    List<String> stringArrayList;
+    private List<String> stringArrayList = new ArrayList<>(0);
 
     public LocalProcessor(String processorName, Long period, String processorVersion, Integer valueOfCheap,
-                          Scanner informationScanner, LinkedList<String> stringArrayList) {
+                          Scanner informationScanner, List<String> stringArrayList) {
         this.processorName = processorName;
         this.period = period;
         this.processorVersion.append(processorVersion != null ? processorVersion : "");
-        this.valueofCheap = valueOfCheap;
+        this.valueOfCheap = valueOfCheap;
         this.informationScanner = informationScanner;
         this.stringArrayList = stringArrayList;
     }
@@ -37,7 +34,7 @@ public class LocalProcessor {
     }
 
     @ListIteratorAnnotation
-    public void listIterator(LinkedList<String> stringList) {
+    public void listIterator(List<String> stringList) {
         for (String st : stringList) {
             Optional.ofNullable(st).map(String::hashCode).ifPresent(System.out::println);
         }
